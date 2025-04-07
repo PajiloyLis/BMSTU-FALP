@@ -1,3 +1,21 @@
+; №2
+; №2.1
+(print (car (cdr '(a b c))))
+(print (cadr '(a b c)))
+(print (car (cdr '(a))))
+(print (cadr '(a)))
+; №2.2
+(print (car (cdr (cdr '(a b c)))))
+(print (caddr '(a b c)))
+(print (car (cdr (cdr '(a b)))))
+(print (caddr '(a b)))
+; №2.3
+(print (car (cdr (cdr (cdr '(a b c d))))))
+(print (cadddr '(a b c d)))
+(print (cadddr '(a b c)))
+(print (cadddr '(a b c)))
+
+; № 5
 (defun f(ar1 ar2 ar3 ar4) 
     (cons (cons ar1 (cons ar2 nil)) (cons (cons ar3 (cons ar4 nil)) nil))
 )
