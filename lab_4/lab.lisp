@@ -5,8 +5,18 @@
       	)
 )
 
+(defun my_last_shitty(lst)
+    (cond 
+        ((null lst) nil)
+        (t (nth (- (length lst) 1) lst))
+    )
+)
+
 (print (my_last '(a b c d)))
 (print (my_last nil))
+
+(print (my_last_shitty '(a b c d)))
+(print (my_last_shitty nil))
 
 ; №4
 (defun without_last (lst)
@@ -15,8 +25,18 @@
     )
 )
 
+(defun without_last_shitty(lst)
+    (cond
+        ((null lst) nil)
+        (t (reverse (nthcdr 1 (reverse lst))))
+    )
+)
+
 (print (without_last '(a b c d)))
 (print (without_last '((a) (b) (c))))
+
+(print (without_last_shitty '(a b c d)))
+(print (without_last_shitty '((a) (b) (c))))
 
 ; №5
 (defun swap-first-last(lst)
