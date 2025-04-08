@@ -100,3 +100,80 @@
 (print (multiply -3 '(2 3 5 6 8 2 1) ))
 
 (print (multiply-2 -3 '((1 (3.5)) (a (b (c (d)))) 2.5 )))
+
+(setf *random-state* (make-random-state t))
+
+(defun do-throw()
+    (+ 1 (random 5))
+)
+
+(defun play-step()
+    (cons (do-throw) (do-throw))
+)
+
+(defun play(&optional (first-sum 0) (second-sum 0) (player-num 1))
+    (let (
+        (throw-result (play-step))
+        )
+        (format t "~A ~A ~A~%" (cond ((= player-num 1) 'first) 
+                                    ((= player-num 2) 'second)) 
+                                (car throw-result) 
+                                (cdr throw-result)
+        )
+        (cond 
+            (
+                (or
+                    (= (+ (car throw-result) (cdr throw-result)) 7)
+                    (= (+ (car throw-result) (cdr throw-result)) 11)
+                )
+                (format t "~A won absolute~%" (cond ((= player-num 1) 'first) 
+                                                  ((= player-num 2) 'second))
+                )
+            )
+            (
+                (or
+                    (and (= (car throw-result) 1) (= (cdr throw-result) 1))
+                    (and (= (car throw-result) 6) (= (cdr throw-result) 6))
+                )
+                (cond 
+                    (
+                        (= player-num 1) 
+                        (play (+ first-sum (car throw-result) (cdr throw-result)) second-sum 1)
+                    )
+                    (
+                        t 
+                        (play first-sum (+ second-sum (car throw-result) (cdr throw-result)) 2)
+                    )
+                )
+            )
+            (
+                t
+                (cond 
+                    (
+                        (= player-num 1) 
+                        (play (+ first-sum (car throw-result) (cdr throw-result)) second-sum 2)
+                    )
+                    (
+                        t 
+                        (cond 
+                            (
+                                (> first-sum (+ second-sum (car throw-result) (cdr throw-result)))
+                                (format t "First won by sum ~A versus ~A~%" first-sum (+ second-sum (car throw-result) (cdr throw-result)))
+                            )
+                            (
+                                (> (+ second-sum (car throw-result) (cdr throw-result)) first-sum)
+                                (format t "Second won by sum ~A versus ~A~%" (+ second-sum (car throw-result) (cdr throw-result)) first-sum)
+                            )
+                            (
+                                t
+                                (format t "Drawn~%")
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+(play)
