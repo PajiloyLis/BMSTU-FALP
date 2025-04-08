@@ -69,7 +69,7 @@
 (defun select-between (lst a b &optional (res '()))
 	(cond ((null lst) nil)
 		  ((and (> (car lst) a) (< (car lst) b)) (insert-in-sorted (select-between (cdr lst) a b) (car lst)))
-		  (t (select-between (cdr lst) a b res))
+		  (t (select-between (cdr lst) a b))
 	)
 )
 
