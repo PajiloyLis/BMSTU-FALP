@@ -19,6 +19,7 @@ phone(sidorov, "+7(934)567-89-01", addr(novosibirsk, gagarina, 42, 5)).
 phone(kuznetsova, "+7(945)678-90-12", addr(ekaterinburg, mira, 33, 17)).
 phone(smirnov, "+7(956)789-01-23", addr(kazan, baumana, 12, 8)).
 phone(ivanov, "+7(915)453-90-29", addr(moskva, lenina, 15, 24)).
+phone(popov, "+7(912)345-67-89", addr(moskva, lenina, 15, 24)).
 
 car(ivanov, toyota, black, 25000, a123bc777).
 car(petrova, bmw, white, 45000, b456de78).
@@ -33,8 +34,13 @@ man_by_car(Mark, Color, Surname, City, Phone) :-
 
 
 goal
-	
-	
- man_by_car(lexus, yellow, X, Y, Z).
+%phone(ivanov, "+7(912)345-67-89", X).
+%phone(ivanov, "+7(912)345-67-89", addr(moskva, lenina, 15, X)).
+%phone(ivanov, X, addr(moskva, lenina, 15, 24)).
+%phone(X, "+7(912)345-67-89", addr(moskva, lenina, 15, 24)).
+%phone(X, Y, addr(moskva, lenina, 15, 24)).
+%car(kuznetsova, X, _, _, _).
+%car(kuznetsova, X, _, _, Y).
+%man_by_car(lexus, yellow, X, Y, Z).
 %man_by_car(mercedes, silver, X, Y, Z).
 %man_by_car(toyota, black, X, Y, Z).
